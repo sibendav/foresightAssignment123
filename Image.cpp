@@ -45,16 +45,17 @@ vector<Point> Image::getAllPoints() const
 	for (double x = points[0].getX(); x <= points[1].getX(); x += moveX)
 		for (double y = points[1].getY(); y >= points[2].getY(); y -= moveY)
 		{
+			//The z plane is tricky, because we can't know if the plane is going from up to down or the opposite
 			if(points[2].getZ()<= points[0].getZ())
 				for (double z = points[2].getZ(); z <= points[0].getZ(); z += moveZ)
 				{
-					allPoints.push_back(Point(x, y, 0));
+					allPoints.push_back(Point(x, y, z));
 					i++;
 				}
 			else
 				for (double z = points[2].getZ(); z >= points[0].getZ(); z -= moveZ)
 				{
-					allPoints.push_back(Point(x, y, 0));
+					allPoints.push_back(Point(x, y, z));
 					i++;
 				}
 		}
